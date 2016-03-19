@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app" ng-cloak>
     <head>
-        <meta charset="UTF-8">
         <title>Angular Test</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap -->
+        <link href="public/css/angular-bootstrap.css" rel="stylesheet"/>
     </head>
     <body>
-        <div class="container">
-            <div ng-controller="homeController as home">
-                message: <h1>{{::home.greeting.content}} </h1>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Project</a>
+                <a href="#/login" class="navbar-link navbar-right">Log in</a>
+                <a href="#" ng-show="$root.authenticated" class="navbar-link navbar-right">Log out</a>
             </div>
         </div>
-        <script src="node_modules/angular/angular.js"></script>
+    </nav>
+        <div class="container">
+            <div ng-view>
+            </div>
+        </div>
+        <!-- Angular -->
+        <script src="public/js/angular-bootstrap.js" type="text/javascript"></script>
+        <!-- Modules -->
         <script src="app/app.js"></script>
+        <!-- Controllers -->
+        <script src="app/dashboard/dashboard.controller.js" type="text/javascript"></script>
+        <script src="app/login/login.controller.js" type="text/javascript"></script>
     </body>
 </html>

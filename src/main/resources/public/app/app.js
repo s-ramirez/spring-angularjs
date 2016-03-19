@@ -1,12 +1,27 @@
-angular.module('app', [])
-    .controller('homeController', homeController);
+(function() {
+    'use strict';
 
-homeController.$inject = ['$http'];
+    angular.module('app', ['ngRoute'])
+        .config(Configure);
 
-function homeController($http) {
-    var vm = this;
+    Configure.$inject = ['$routeProvider', '$httpProvider'];
 
-    $http.get('/resource/').success(function(data) {
-        vm.greeting = data;
-    });
-}
+    function Configure($routeProvider, $httpProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'app/dashboard/dashboard.html',
+                controller: 'dashboardController',
+                controllerAs: 'dashboard'
+            })
+            .when('/login', {
+                templateUrl: 'app/login/login.html',
+                controller: 'loginController',
+                controllerAs: 'login'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+
+        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+    };
+})();
